@@ -148,11 +148,14 @@ class ScreenshotsPlugin implements Plugin<Project> {
     }
   }
 
-  String getTestApkOutput(Project project) {
+  //String getTestApkOutput(Project project) {
+  //  return project.tasks.getByPath(project.screenshots.testApkTarget).getOutputs().getFiles().filter {
+  //    it.getAbsolutePath().endsWith ".apk"
+  //  }.getSingleFile().getAbsolutePath()
+  //}
 
-    return project.tasks.getByPath(project.screenshots.testApkTarget).getOutputs().getFiles().filter {
-      it.getAbsolutePath().endsWith ".apk"
-    }.getSingleFile().getAbsolutePath()
+  String getTestApkOutput(Project project) {
+    return project.android.testVariants.first().outputs.first().outputFile
   }
 
   void printPullFromDirectoryUsage(def logger, def referenceDir, def targetPackage) {
